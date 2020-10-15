@@ -9,19 +9,19 @@ class Api {
   }
   Api._internal();
 
-// The toke, that we fetch from the database
+// The token that we fetch from the database
   String token;
 // The URL to the path tp the endpoint
-  String baseUrl = 'http://192.168.1.8:81';
+  String baseUrl = "192.168.42.111:81";
 // The path
-  String path = 'chatapp/public/api';
+  String path = "chatapp/public/api";
 
 // The get request having the endPath and a list of parameters(the query)
 // this function will fetch data from a given endpath passing a list of queries ( parameters)
   Future<http.Response> httpGet(String endPath, {Map<String, String> query}) {
     var uri = Uri.http(baseUrl, '$path/$endPath');
     if (query != null) {
-      var uri = Uri.http(baseUrl, '$path/$endPath', query);
+      uri = Uri.http(baseUrl, '$path/$endPath', query);
     }
 // the list of header will be provided containing the token and the uri
     return http.get(uri, headers: {
