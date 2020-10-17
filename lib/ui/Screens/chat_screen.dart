@@ -1,3 +1,4 @@
+import 'package:chatapp/models/conversation_model.dart';
 import 'package:chatapp/ui/Widgets/friend_message_card.dart';
 import 'package:chatapp/ui/Widgets/my_message_card.dart';
 import 'package:chatapp/ui/size_config.dart';
@@ -5,7 +6,8 @@ import 'package:chatapp/ui/style.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({Key key}) : super(key: key);
+  final ConversationModel conversationModel;
+  ChatScreen({Key key, this.conversationModel}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();

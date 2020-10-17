@@ -51,6 +51,8 @@ class _ConversationsScreenState extends State<ConversationsScreen> {
                   itemCount: provider.conversations.length,
                   itemBuilder: (context, index) {
                     return ConversationsCard(
+                        onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => ChatScreen())),
                         conversation: provider.conversations[index]);
                   },
                 )),

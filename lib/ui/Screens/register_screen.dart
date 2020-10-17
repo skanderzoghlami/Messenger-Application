@@ -15,6 +15,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  var checkBoxValue = false;
   final _key = GlobalKey<FormState>();
   TextEditingController _password = new TextEditingController();
   TextEditingController _email = new TextEditingController();
@@ -38,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           children: <Widget>[
             SizedBox(height: SizeConfig.screenHeight * 0.1),
             Center(
-              child: Text('Gosip', style: Style.appNameTextStyle),
+              child: Text('Join us now !', style: Style.appNameTextStyle),
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.1),
             Padding(
@@ -112,6 +113,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }),
                     ],
                   )),
+            ),
+            CheckboxListTile(
+              title: Text(
+                  "By clicking save you agree that you are over 13 and agree on our terms of service"),
+              value: checkBoxValue,
+              onChanged: (newValue) {
+                setState(() {
+                  checkBoxValue = newValue;
+                });
+              },
+              controlAffinity:
+                  ListTileControlAffinity.leading, //  <-- leading Checkbox
             )
           ],
         ),
@@ -124,7 +137,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   style: TextStyle(fontSize: 32),
                 ),
                 onTap: () async {
-                  if (_key.currentState.validate()) {
+                  if ((_key.currentState.validate()) &&
+                      (checkBoxValue == true)) {
                     print('isValidate');
                     var result = await provider.register(
                         _email.text, _password.text.trim(), _name.text.trim());
